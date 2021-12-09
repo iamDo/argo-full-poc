@@ -18,6 +18,15 @@ spec:
               artifacts:
                 - name: git-artifact-input
                   from: "{{steps.clone-repo.outputs.artifacts.git-artifact}}"
+        - - name: update-repo-index
+            template: update-repo-index
+            arguments:
+              parameters:
+                - name: version-number
+                  value: "{{steps.clone-repo.outputs.parameters.version-number}}"
+              artifacts:
+                - name: helm-chart
+                  from: "{{steps.make-helm-package.outputs.artifacts.helm-chart}}"
     - name: clone-repo
       container:
         image: ghcr.io/iamdo/clone-repo-get-revs:0.1.2
@@ -45,3 +54,13 @@ spec:
         artifacts:
           - name: git-artifact-input
             path: '/git'
+    - name: update-repo-index
+      container:
+        image: ghcr.io/iamdo/create-new-repo-index:0.1.7
+        command: ["/scripts/entrypoint.sh"]
+      inputs:
+        parameters:
+          - name: version-number
+        artifacts:
+          - name: helm-chart
+            path: '/chart/argo-test-chart-0.2.{{inputs.parameters.version-number}}.tgz'
