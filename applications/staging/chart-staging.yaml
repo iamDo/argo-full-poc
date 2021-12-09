@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: chart-staging
+  namespace: argocd
+spec:
+  project: staging
+  source:
+    repoURL: 'https://iamdo.github.io/argo-test-chart-repo/'
+    targetRevision: 0.1.0
+    chart: argo-test-chart
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: chart-staging
+  syncPolicy: {}
