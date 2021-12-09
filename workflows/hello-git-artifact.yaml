@@ -27,6 +27,26 @@ spec:
               artifacts:
                 - name: helm-chart
                   from: "{{steps.make-helm-package.outputs.artifacts.helm-chart}}"
+        - - name: promote-to-staging
+            template: manual-confirmation
+        - - name: deploy-to-staging
+            template: deploy-to-environment
+            arguments:
+              parameters:
+                - name: version-number
+                  value: "{{steps.clone-repo.outputs.parameters.version-number}}"
+                - name: environment
+                  value: staging
+        - - name: promote-to-production
+            template: manual-confirmation
+        - - name: deploy-to-production
+            template: deploy-to-environment
+            arguments:
+              parameters:
+                - name: version-number
+                  value: "{{steps.clone-repo.outputs.parameters.version-number}}"
+                - name: environment
+                  value: production
     - name: clone-repo
       container:
         image: ghcr.io/iamdo/clone-repo-get-revs:0.1.2
@@ -64,3 +84,14 @@ spec:
         artifacts:
           - name: helm-chart
             path: '/chart/argo-test-chart-0.2.{{inputs.parameters.version-number}}.tgz'
+    - name: manual-confirmation
+      suspend: {}
+    - name: deploy-to-environment
+      container:
+        image: ghcr.io/iamdo/deploy-to-environment:0.1.3
+        command: ["/scripts/entrypoint.sh"]
+        args: ["{{inputs.parameters.environment}}", "{{inputs.parameters.version-number}}"]
+      inputs:
+        parameters:
+          - name: environment
+          - name: version-number
