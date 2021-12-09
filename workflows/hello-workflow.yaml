@@ -7,6 +7,6 @@ spec:
   templates:
     - name: alpine-hello
       container:
-        image: ghcr.io/iamdo/test-image
+        image: ghcr.io/iamdo/test-image:0.1.0
         command: [echo]
         args: ["hello world"]

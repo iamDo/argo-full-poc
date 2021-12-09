@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: hello-
+spec:
+  entrypoint: alpine-make-hello-file
+  templates:
+    - name: alpine-make-hello-file
+      container:
+        image: ghcr.io/iamdo/test-image:0.1.0
+        command: [touch]
+        args: ["/hello.txt"]
+      outputs:
+        artifacts:
+          - name: output-artifact
+            path: "/hello.txt"

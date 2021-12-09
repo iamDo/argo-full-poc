@@ -1,0 +1,47 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: some-template
+spec:
+  entrypoint: helm-chart-steps
+  templates:
+    - name: helm-chart-steps
+      steps:
+        - - name: clone-repo
+            template: clone-repo
+        - - name: make-helm-package
+            template: make-helm-package
+            arguments:
+              parameters:
+                - name: version-number
+                  value: "{{steps.clone-repo.outputs.parameters.version-number}}"
+              artifacts:
+                - name: git-artifact-input
+                  from: "{{steps.clone-repo.outputs.artifacts.git-artifact}}"
+    - name: clone-repo
+      container:
+        image: ghcr.io/iamdo/clone-repo-get-revs:0.1.2
+        command: ["/scripts/entrypoint.sh"]
+      outputs:
+        parameters:
+          - name: version-number
+            valueFrom:
+              path: '/git/rev-count'
+        artifacts:
+          - name: git-artifact
+            path: '/git/argo-test-charts'
+    - name: make-helm-package
+      container:
+        image: alpine/helm
+        command: ['helm']
+        args: ['package', '/git']
+      outputs:
+        artifacts:
+          - name: helm-chart
+            path: '/apps/argo-test-chart-0.2.{{inputs.parameters.version-number}}.tgz'
+      inputs:
+        parameters:
+          - name: version-number
+        artifacts:
+          - name: git-artifact-input
+            path: '/git'
