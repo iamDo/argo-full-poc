@@ -430,6 +430,9 @@ rules:
       - "*"
     resources:
       - workflows
+      - workflowtemplates
+      - cronworkflows
+      - clusterworkflowtemplates
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
@@ -443,4 +446,3 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: operate-workflow-sa
-    namespace: argo-workflows
