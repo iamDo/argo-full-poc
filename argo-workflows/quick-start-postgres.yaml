@@ -253,11 +253,6 @@ metadata:
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: argo-workflows
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
   name: github.com
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -428,7 +423,6 @@ rules:
   - workflowtemplates
   - cronworkflows
   - cronworkflows/finalizers
-  - clusterworkflowtemplates
   verbs:
   - create
   - get
@@ -881,6 +875,7 @@ spec:
       containers:
       - args:
         - server
+        - --namespaced
         - --auth-mode
         - server
         - --auth-mode
@@ -1018,6 +1013,7 @@ spec:
         - workflow-controller-configmap
         - --executor-image
         - quay.io/argoproj/argoexec:latest
+        - --namespaced
         command:
         - workflow-controller
         env:
