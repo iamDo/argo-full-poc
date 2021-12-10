@@ -253,6 +253,11 @@ metadata:
 apiVersion: v1
 kind: ServiceAccount
 metadata:
+  name: argo-workflows
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
   name: github.com
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -578,6 +583,8 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: argo-server
+- kind: ServiceAccount
+  name: argo-workflows
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
