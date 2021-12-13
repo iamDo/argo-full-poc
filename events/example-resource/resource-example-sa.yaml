@@ -1,5 +1,5 @@
 apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
+kind: ClusterRole
 metadata:
   name: resource-example
 rules:
@@ -13,13 +13,13 @@ rules:
   - watch
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
+kind: ClusterRoleBinding
 metadata:
   name: resource-example
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   name: resource-example
-  kind: Role
+  kind: ClusterRole
 subjects:
 - kind: ServiceAccount
   name: resource-example-sa
