@@ -20,3 +20,8 @@ spec:
       # Optional
       eventTypes:
         - UPDATE
+      filter:
+        fields:
+          - key: metadata.name
+            operation: ==
+            value: 'chart-staging'
