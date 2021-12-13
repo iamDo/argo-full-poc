@@ -23,7 +23,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: resource-example-sa
-  namespace: chart-staging
+  namespace: argo-workflows
 ---
 apiVersion: v1
 kind: ServiceAccount
