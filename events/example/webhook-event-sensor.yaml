@@ -51,5 +51,5 @@ spec:
             dest: k8s.parameters.0.src.dataKey
           - src:
               dependencyName: test-dep
-              dataKey: dest
+              dataKey: body.dest
             dest: k8s.parameters.0.dest
