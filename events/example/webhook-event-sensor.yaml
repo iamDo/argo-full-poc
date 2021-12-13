@@ -12,8 +12,26 @@ spec:
   triggers:
     - template:
         name: webhook-workflow-trigger
+        parameters:
+          - src:
+              dependencyName: test-dep
+              dataKey: body.dependencyName
+            dest: k8s.parameters.0.src.dependencyName
+          - src:
+              dependencyName: test-dep
+              dataKey: body.dataKey
+            dest: k8s.parameters.0.src.dataKey
+          - src:
+              dependencyName: test-dep
+              dataKey: dest
+            dest: k8s.parameters.0.dest
         k8s:
           operation: create
+          parameters:
+            - src:
+                dependencyName: THIS_WILL_BE_REPLACED
+                dataKey: THIS_WILL_BE_REPLACED
+              dest: THIS_WILL_BE_REPLACED
           source:
             resource:
               apiVersion: argoproj.io/v1alpha1
@@ -36,21 +54,3 @@ spec:
                       image: docker/whalesay:latest
                       command: [cowsay]
                       args: ["{{inputs.parameters.message}}"]
-          parameters:
-            - src:
-                dependencyName: THIS_WILL_BE_REPLACED
-                dataKey: THIS_WILL_BE_REPLACED
-              dest: THIS_WILL_BE_REPLACED
-        parameters:
-          - src:
-              dependencyName: test-dep
-              dataKey: body.dependencyName
-            dest: k8s.parameters.0.src.dependencyName
-          - src:
-              dependencyName: test-dep
-              dataKey: body.dataKey
-            dest: k8s.parameters.0.src.dataKey
-          - src:
-              dependencyName: test-dep
-              dataKey: dest
-            dest: k8s.parameters.0.dest
