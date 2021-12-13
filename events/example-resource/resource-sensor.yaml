@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: EventSource
+metadata:
+  name: resource
+spec:
+  template:
+    serviceAccountName: argo-server # assign a service account with `get`, `list` and `watch` permissions on the resource being watched.
+  resource:
+    example:
+      # namespace to listen events within
+      namespace: chart-production
+      # resource group
+      group: argoproj.io
+      # resource version
+      version: v1alpha1
+      # resource kind
+      resource: application
+      # type of events
+      # possible values are ADD, DELETE, UPDATE
+      # Optional
+      eventTypes:
+        - UPDATE
