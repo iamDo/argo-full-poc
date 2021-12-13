@@ -4,7 +4,7 @@ metadata:
   name: resource
 spec:
   template:
-    serviceAccountName: argo-server # assign a service account with `get`, `list` and `watch` permissions on the resource being watched.
+    serviceAccountName: resource-example-sa # assign a service account with `get`, `list` and `watch` permissions on the resource being watched.
   resource:
     example:
       # namespace to listen events within

@@ -1,0 +1,29 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: resource-example
+rules:
+- apiGroups:
+  - argoproj.io
+  resources:
+  - application
+  verbs:
+  - get
+  - list
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: resource-example
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  name: resource-example
+subjects:
+- kind: ServiceAccount
+  name: resource-example-sa
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: resource-example-sa
