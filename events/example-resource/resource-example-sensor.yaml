@@ -5,6 +5,10 @@ metadata:
 spec:
   template:
     serviceAccountName: operate-workflow-sa
+    container:
+      env:
+        - name: DEBUG_LOG
+          value: "true"
   dependencies:
     - name: resource-test-dep
       eventSourceName: resource
@@ -13,4 +17,4 @@ spec:
     - template:
         name: log-trigger
         log:
-          intervalSeconds: 3600
+          intervalSeconds: 360
