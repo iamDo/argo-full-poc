@@ -19,6 +19,7 @@ metadata:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   name: resource-example
+  kind: Role
 subjects:
 - kind: ServiceAccount
   name: resource-example-sa
