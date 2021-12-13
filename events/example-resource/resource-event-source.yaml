@@ -14,7 +14,7 @@ spec:
       # resource version
       version: v1alpha1
       # resource kind
-      resource: applications
+      resource: application
       # type of events
       # possible values are ADD, DELETE, UPDATE
       # Optional
