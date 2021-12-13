@@ -8,7 +8,7 @@ spec:
   resource:
     example:
       # namespace to listen events within
-      namespace: chart-staging
+      namespace: argocd
       # resource group
       group: argoproj.io
       # resource version
