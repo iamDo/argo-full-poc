@@ -7,7 +7,7 @@ spec:
   project: staging
   source:
     repoURL: 'https://iamdo.github.io/argo-test-chart-repo/'
-    targetRevision: 0.2.25
+    targetRevision: 0.2.26
     chart: argo-test-chart
   destination:
     server: 'https://kubernetes.default.svc'
