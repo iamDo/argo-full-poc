@@ -13,6 +13,8 @@ spec:
       parameters:
         - name: application
           value: chart-staging
+        - name: greeting
+          value: Hello from Staging!
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: chart-staging
