@@ -13,6 +13,8 @@ spec:
       parameters:
         - name: application
           value: chart-production
+        - name: greeting
+          value: Hello from Production!
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: chart-production
