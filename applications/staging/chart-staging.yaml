@@ -24,3 +24,5 @@ items:
           parameters:
             - name: application
               value: chart-staging
+            - name: greeting
+              value: Hello from Staging!
