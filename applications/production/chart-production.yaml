@@ -11,8 +11,8 @@ spec:
     chart: argo-test-chart
     helm:
       parameters:
-      - name: application
-        value: chart-production
+        - name: application
+          value: chart-production
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: chart-production
