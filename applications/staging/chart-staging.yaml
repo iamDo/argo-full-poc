@@ -17,12 +17,3 @@ spec:
     server: 'https://kubernetes.default.svc'
     namespace: chart-staging
   syncPolicy: {}
-items:
-  - spec:
-      source:
-        helm:
-          parameters:
-            - name: application
-              value: chart-staging
-            - name: greeting
-              value: Hello from Staging!
