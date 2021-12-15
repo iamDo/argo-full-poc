@@ -11,9 +11,16 @@ spec:
     chart: argo-test-chart
     helm:
       parameters:
-      - name: application
-        value: chart-staging
+        - name: application
+          value: chart-staging
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: chart-staging
   syncPolicy: {}
+items:
+  - spec:
+      source:
+        helm:
+          parameters:
+            - name: application
+              value: chart-staging
