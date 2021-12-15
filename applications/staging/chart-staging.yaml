@@ -7,7 +7,7 @@ spec:
   project: staging
   source:
     repoURL: 'https://iamdo.github.io/argo-test-chart-repo/'
-    targetRevision: 0.2.44
+    targetRevision: 0.2.45
     chart: argo-test-chart
     helm:
       parameters:
