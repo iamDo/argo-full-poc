@@ -11,15 +11,15 @@ spec:
       eventName: bamboo-event
   triggers:
     - template:
-      name: workflow-trigger
-      argoWorkflow:
-        group: argoproj.io
-        version: v1alpha1
-        kind: Workflow
-        operation: submit
-        metadata:
-          generatename: bamboo-triggered-workflow
-        spec: helm-chart-steps
-        workflowTemplateRef:
-          name: deploy-chart
-          clusterScope: false
+        name: workflow-trigger
+        argoWorkflow:
+          group: argoproj.io
+          version: v1alpha1
+          kind: Workflow
+          operation: submit
+          metadata:
+            generatename: bamboo-triggered-workflow
+          spec: helm-chart-steps
+          workflowTemplateRef:
+            name: deploy-chart
+            clusterScope: false
