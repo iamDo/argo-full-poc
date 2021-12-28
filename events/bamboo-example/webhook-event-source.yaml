@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: EventSource
 metadata:
-  name: bamboo-webhook
+  name: bamboo-webhook-eventsource
 spec:
   service:
     ports:
