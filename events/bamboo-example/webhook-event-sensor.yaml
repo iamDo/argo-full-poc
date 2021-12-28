@@ -10,16 +10,20 @@ spec:
       eventSourceName: bamboo-webhook-eventsource
       eventName: bamboo-event
   triggers:
-    - template:
-        name: workflow-trigger
-        argoWorkflow:
-          group: argoproj.io
-          version: v1alpha1
-          kind: Workflow
-          operation: submit
-          metadata:
-            generatename: bamboo-triggered-workflow
-          spec: helm-chart-steps
-          workflowTemplateRef:
-            name: deploy-chart
-            clusterScope: false
+  - template:
+      name: workflow-trigger
+      argoWorkflow:
+        group: argoproj.io
+        version: v1alpha1
+        kind: Workflow
+        operation: submit
+        metadata:
+          generatename: bamboo-triggered-workflow-
+        source:
+          resource:
+            apiVersion: argoproj.io/v1alpha1
+            kind: Workflow
+            metadata:
+              name: special-trigger
+            spec:
+              serviceAccountName: operate-workflow-sa
