@@ -7,7 +7,7 @@ spec:
     serviceAccountName: operate-workflow-sa
   dependencies:
     - name: bamboo-dep
-      eventSourceName: bamboo-webhook
+      eventSourceName: bamboo-webhook-eventsource
       eventName: bamboo-event
   triggers:
     - template:
