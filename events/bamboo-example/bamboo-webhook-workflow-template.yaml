@@ -18,7 +18,7 @@ spec:
     container:
       image: alpine:latest
       command: ["echo"]
-      args: ["{{inputs.parameters.message"]
+      args: ["{{inputs.parameters.message}}"]
     inputs:
       parameters:
       - name: message
