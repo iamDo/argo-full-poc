@@ -4,21 +4,18 @@ metadata:
   name: bamboo-workflow
 spec:
   entrypoint: hello-world
+  arguments:
+    parameters:
+    - name: message
+      value: "Hello, world!"
   templates:
   - name: hello-world
     dag:
       tasks:
       - name: say-hello
         template: say-something
-        arguments:
-          parameters:
-          - name: message
-            value: "Hello, world!"
   - name: say-something
     container:
       image: alpine:latest
       command: ["echo"]
-      args: ["{{inputs.parameters.message}}"]
-    inputs:
-      parameters:
-      - name: message
+      args: ["{{workflow.parameters.message}}"]
