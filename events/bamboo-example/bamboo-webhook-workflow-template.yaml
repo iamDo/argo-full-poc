@@ -24,4 +24,4 @@ spec:
     container:
       image: alpine:latest
       command: ["echo"]
-      args: ["commit_id: {{workflow.parameters.commit_id}}\ncontainer_repo_url: {{workflow.parameters.container_repo_url}}\ncontainer_tag: {{workflow.parameters.container_tag}}\ngit_repo_url: {{workflow.parameters.container_repo_url}}"]
+      args: ["commit_id: {{workflow.parameters.commit_id}}\ncontainer_repo_url: {{workflow.parameters.container_repo_url}}\ncontainer_tag: {{workflow.parameters.container_tag}}\ngit_repo_url: {{workflow.parameters.git_repo_url}}"]
