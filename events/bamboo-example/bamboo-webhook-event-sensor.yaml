@@ -27,6 +27,10 @@ spec:
               generateName: bamboo-workflow
             spec:
               entrypoint: hello-world
+              arguments:
+                parameters:
+                - name: message
+                  value: "something default"
               workflowTemplateRef:
                 name: bamboo-workflow
                 clusterScope: false
