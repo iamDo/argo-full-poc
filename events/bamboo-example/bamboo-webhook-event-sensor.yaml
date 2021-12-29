@@ -24,9 +24,9 @@ spec:
             apiVersion: argoproj.io/v1alpha1
             kind: Workflow
             metadata:
-              generateName: special-trigger-
+              generateName: bamboo-workflow
             spec:
               entrypoint: helm-chart-steps
               workflowTemplateRef:
-                name: bamboo-workflow
+                name: hello-world
                 clusterScope: false
