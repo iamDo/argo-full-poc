@@ -26,7 +26,7 @@ spec:
             metadata:
               generateName: bamboo-workflow
             spec:
-              entrypoint: helm-chart-steps
+              entrypoint: hello-world
               workflowTemplateRef:
-                name: hello-world
+                name: bamboo-workflow
                 clusterScope: false
