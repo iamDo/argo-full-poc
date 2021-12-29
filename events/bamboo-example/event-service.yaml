@@ -1,0 +1,15 @@
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: bamboo-webhook-event-source-service
+spec:
+  selector:
+    controller: eventsource-controller
+    eventsource-name: bamboo-webhook-eventsource
+    owner-name: bamboo-webhook-eventsource
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 12000
+    targetPort: 12000
