@@ -3,10 +3,6 @@ kind: EventSource
 metadata:
   name: bamboo-webhook-eventsource
 spec:
-  service:
-    ports:
-      - port: 12000
-        targetPort: 12000
   webhook:
     # event-source can run multiple HTTP servers. Simply define a unique port to start a new HTTP server
     bamboo-event:
