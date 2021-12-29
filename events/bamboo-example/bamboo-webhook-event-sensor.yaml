@@ -38,4 +38,4 @@ spec:
         - src:
             dependencyName: bamboo-dep
             dataKey: body.message
-          dest: spec.arguments.parameters.0.value
+          dest: spec.arguments.parameters.message.value
