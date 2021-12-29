@@ -6,8 +6,14 @@ spec:
   entrypoint: hello-world
   arguments:
     parameters:
-    - name: message
-      value: "Hello, world!"
+    - name: commit_id
+      value: ""
+    - name: container_repo_url
+      value: ""
+    - name: container_tag
+      value: ""
+    - name: git_repo_url
+      value: ""
   templates:
   - name: hello-world
     dag:
@@ -18,4 +24,4 @@ spec:
     container:
       image: alpine:latest
       command: ["echo"]
-      args: ["{{workflow.parameters.message}}"]
+      args: ["commit_id: {{workflow.parameters.commit_id}}\ncontainer_repo_url: {{workflow.parameters.container_repo_url}}\ncontainer_tag: {{workflow.parameters.container_tag}}\ngit_repo_url: {{workflow.parameters.container_repo_url}}"]

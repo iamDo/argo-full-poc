@@ -29,13 +29,37 @@ spec:
               entrypoint: hello-world
               arguments:
                 parameters:
-                - name: message
-                  value: "something default"
+                - name: commit_id
+                  value: ""
+                - name: container_repo_url
+                  value: ""
+                - name: container_tag
+                  value: ""
+                - name: git_repo_url
+                  value: ""
               workflowTemplateRef:
                 name: bamboo-workflow
                 clusterScope: false
+        # Have to use actual array indexes because of
+        # https://github.com/argoproj/argo-events/issues/1230
+        # Looking into it further it seems that it's not using gjson syntax
+        # https://github.com/argoproj/argo-events/blob/master/pkg/apis/sensor/v1alpha1/types.go#L678
+        # but sjson instead, and sjson does not have the querying capabilities
+        # gjson has: https://github.com/tidwall/sjson/issues/43
         parameters:
         - src:
             dependencyName: bamboo-dep
-            dataKey: body.message
-          dest: spec.arguments.parameters.message.value
+            dataKey: body.commit_id
+          dest: spec.arguments.parameters.0.value
+        - src:
+            dependencyName: bamboo-dep
+            dataKey: body.container_repo_url
+          dest: spec.arguments.parameters.1.value
+        - src:
+            dependencyName: bamboo-dep
+            dataKey: body.container_tag
+          dest: spec.arguments.parameters.2.value
+        - src:
+            dependencyName: bamboo-dep
+            dataKey: body.git_repo_url
+          dest: spec.arguments.parameters.3.value
