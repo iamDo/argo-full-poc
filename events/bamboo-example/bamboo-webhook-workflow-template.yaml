@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: bamboo-workflow
+spec:
+  entrypoint: hello-world
+  templates:
+  - name: hello-world
+    dag:
+      tasks:
+      - name: say-hello
+        template: say-something
+        arguments:
+          parameters:
+          - name: message
+            value: "Hello, world!"
+  - name: say-something
+    container:
+      image: alpine:latest
+      command: ["echo"]
+      args: ["{{inputs.parameters.message"]
+    inputs:
+      parameters:
+      - name: message
