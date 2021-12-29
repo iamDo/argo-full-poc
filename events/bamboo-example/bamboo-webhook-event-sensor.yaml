@@ -30,3 +30,8 @@ spec:
               workflowTemplateRef:
                 name: bamboo-workflow
                 clusterScope: false
+        parameters:
+        - src:
+            dependencyName: bamboo-dep
+            dataKey: body.message
+          dest: spec.arguments.0.value
