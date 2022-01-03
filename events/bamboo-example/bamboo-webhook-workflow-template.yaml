@@ -20,6 +20,11 @@ spec:
       tasks:
       - name: say-hello
         template: say-something
+      - name: run-container
+        template: run-container
+  - name: run-container
+    container:
+      image: "{{workflow.parameters.container_repo_url}}:{{workflow.parameters.container_tag}}"
   - name: say-something
     container:
       image: alpine:latest
