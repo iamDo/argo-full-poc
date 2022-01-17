@@ -49,7 +49,7 @@ spec:
                   value: production
     - name: clone-repo
       container:
-        image: ghcr.io/iamdo/clone-repo-get-revs:0.1.2
+        image: ghcr.io/iamdo/clone-repo-get-revs:latest
         command: ["/scripts/entrypoint.sh"]
       outputs:
         parameters:
