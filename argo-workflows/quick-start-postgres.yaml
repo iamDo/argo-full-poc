@@ -695,7 +695,7 @@ data:
       secretKeySecret:
         name: my-minio-cred
         key: secretkey
-  containerRuntimeExecutor: emmisary
+  containerRuntimeExecutor: pns
   containerRuntimeExecutors: |
     - name: emissary
       selector:
