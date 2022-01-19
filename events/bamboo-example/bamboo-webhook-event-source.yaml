@@ -12,6 +12,6 @@ spec:
       endpoint: /bamboo-webhook
       # HTTP request method to allow. In this case, only POST requests are accepted
       method: POST
-        #      authSecret:
-        #        name: argo-events-webhook-secret
-        #        key: webhook-auth-token
+      authSecret:
+        name: argo-events-webhook-secret
+        key: webhook-auth-token
