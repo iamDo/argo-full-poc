@@ -1,0 +1,24 @@
+# This example demonstrates the ability to pass artifacts
+# from one step to the next.
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: test-valuefrom-own-container-
+spec:
+  entrypoint: test-valuefrom-own-container-steps
+  templates:
+  - name: test-valuefrom-own-container-steps
+    steps:
+    - - name: alpine-write
+        template: alpine-write
+
+  - name: alpine-write
+    container:
+      image: alpine:latest
+      command: ['sh', '-c']
+      args: ['echo test-content > /test-file; ls -al; sleep 1']
+    outputs:
+      parameters:
+      - name: test-parameter
+        valueFrom:
+          path: '/test-file'
